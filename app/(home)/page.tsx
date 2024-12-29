@@ -9,6 +9,7 @@ import { toSlug } from "@/lib/utils";
 import data from "@/lib/data";
 import { Card, CardContent } from "@/components/ui/card";
 import ProductSlider from "@/components/shared/product/product-slider";
+import BrowsingHistoryList from "@/components/shared/browsing-history-list";
 
 export default async function HomePage() {
   const categories = (await getAllCategories()).slice(0, 4);
@@ -25,6 +26,8 @@ export default async function HomePage() {
     tag: "best-seller",
     limit: 4,
   });
+  const bestSellingProducts = await getProductsByTag({ tag: "best-seller" });
+
   const cards = [
     {
       title: "Categories to explore",
@@ -74,6 +77,19 @@ export default async function HomePage() {
             <ProductSlider title={"Today's Deals"} products={todaysDeals} />
           </CardContent>
         </Card>
+
+        <Card className="w-full rounded-none">
+          <CardContent className="items-center gap-3 p-4">
+            <ProductSlider
+              title="Best Selling Products"
+              products={bestSellingProducts}
+              hideDetails
+            />
+          </CardContent>
+        </Card>
+      </div>
+      <div className="bg-background p-4">
+        <BrowsingHistoryList />
       </div>
     </>
   );

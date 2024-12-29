@@ -1,19 +1,12 @@
-// eslint-disable-next-line camelcase
-import { Geist, Geist_Mono } from "next/font/google";
 import type { Metadata } from "next";
+// eslint-disable-next-line camelcase
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { APP_DESCRIPTION, APP_NAME, APP_SLOGAN } from "@/lib/constants";
+import ClientProviders from "@/components/shared/client-providers";
 import React from "react";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
@@ -30,10 +23,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={`${inter.className}  antialiased`}>
+        <ClientProviders>{children}</ClientProviders>
       </body>
     </html>
   );
