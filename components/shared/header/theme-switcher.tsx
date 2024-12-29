@@ -1,8 +1,8 @@
-'use client'
+"use client";
 
-import { ChevronDownIcon, Moon, Sun } from 'lucide-react'
-import { useTheme } from 'next-themes'
-import * as React from 'react'
+import { ChevronDownIcon, Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
+import * as React from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,41 +11,41 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
+} from "@/components/ui/dropdown-menu";
 
-import useColorStore from '@/hooks/use-color-store'
-import useIsMounted from '@/hooks/use-is-mounted'
+import useColorStore from "@/hooks/use-color-store";
+import useIsMounted from "@/hooks/use-is-mounted";
 
 export default function ThemeSwitcher() {
-  const { theme, setTheme } = useTheme()
-  const { availableColors, color, setColor } = useColorStore(theme)
+  const { theme, setTheme } = useTheme();
+  const { availableColors, color, setColor } = useColorStore(theme);
   const changeTheme = (value: string) => {
-    setTheme(value)
-  }
-  const isMounted = useIsMounted()
+    setTheme(value);
+  };
+  const isMounted = useIsMounted();
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className='header-button h-[41px]'>
-        {theme === 'dark' && isMounted ? (
-          <div className='flex items-center gap-1'>
-            <Moon className='h-4 w-4' /> Dark <ChevronDownIcon />
+      <DropdownMenuTrigger className="header-button h-[41px]">
+        {theme === "dark" && isMounted ? (
+          <div className="flex items-center gap-1">
+            <Moon className="size-4" /> Dark <ChevronDownIcon />
           </div>
         ) : (
-          <div className='flex items-center gap-1'>
-            <Sun className='h-4 w-4' /> Light
+          <div className="flex items-center gap-1">
+            <Sun className="size-4" /> Light
             <ChevronDownIcon />
           </div>
         )}
       </DropdownMenuTrigger>
-      <DropdownMenuContent className='w-56'>
+      <DropdownMenuContent className="w-56">
         <DropdownMenuLabel>Theme</DropdownMenuLabel>
 
         <DropdownMenuRadioGroup value={theme} onValueChange={changeTheme}>
-          <DropdownMenuRadioItem value='dark'>
-            <Moon className='h-4 w-4 mr-1' /> Dark
+          <DropdownMenuRadioItem value="dark">
+            <Moon className="mr-1 size-4" /> Dark
           </DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value='light'>
-            <Sun className='h-4 w-4 mr-1' /> Light
+          <DropdownMenuRadioItem value="light">
+            <Sun className="mr-1 size-4" /> Light
           </DropdownMenuRadioItem>
         </DropdownMenuRadioGroup>
         <DropdownMenuSeparator />
@@ -59,7 +59,7 @@ export default function ThemeSwitcher() {
             <DropdownMenuRadioItem key={c.name} value={c.name}>
               <div
                 style={{ backgroundColor: c.name }}
-                className='h-4 w-4 mr-1 rounded-full'
+                className="mr-1 size-4 rounded-full"
               ></div>
 
               {c.name}
@@ -68,5 +68,5 @@ export default function ThemeSwitcher() {
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }

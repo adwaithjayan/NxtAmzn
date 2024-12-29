@@ -1,5 +1,5 @@
-import { SearchIcon } from 'lucide-react'
-import { Input } from '@/components/ui/input'
+import { SearchIcon } from "lucide-react";
+import { Input } from "@/components/ui/input";
 
 import {
   Select,
@@ -7,20 +7,20 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select'
-import { APP_NAME } from '@/lib/constants'
-import { getAllCategories } from '@/lib/actions/product.actions'
+} from "@/components/ui/select";
+import { APP_NAME } from "@/lib/constants";
+import { getAllCategories } from "@/lib/actions/product.actions";
 
 export default async function Search() {
-  const categories = await getAllCategories()
+  const categories = await getAllCategories();
   return (
-    <form action='/search' method='GET' className='flex  items-stretch h-10 '>
-      <Select name='category'>
-        <SelectTrigger className='w-auto h-full dark:border-gray-200 bg-gray-100 text-black border-r  rounded-r-none rounded-l-md'>
-          <SelectValue placeholder='All' />
+    <form action="/search" method="GET" className="flex  h-10 items-stretch ">
+      <Select name="category">
+        <SelectTrigger className="h-full w-auto rounded-l-md rounded-r-none border-r bg-gray-100  text-black dark:border-gray-200">
+          <SelectValue placeholder="All" />
         </SelectTrigger>
-        <SelectContent position='popper'>
-          <SelectItem value='all'>All</SelectItem>
+        <SelectContent position="popper">
+          <SelectItem value="all">All</SelectItem>
           {categories.map((category) => (
             <SelectItem key={category} value={category}>
               {category}
@@ -29,17 +29,17 @@ export default async function Search() {
         </SelectContent>
       </Select>
       <Input
-        className='flex-1 rounded-none dark:border-gray-200 bg-gray-100 text-black text-base h-full'
+        className="h-full flex-1 rounded-none bg-gray-100 text-base text-black dark:border-gray-200"
         placeholder={`Search Site ${APP_NAME}`}
-        name='q'
-        type='search'
+        name="q"
+        type="search"
       />
       <button
-        type='submit'
-        className='bg-primary text-primary-foreground text-black rounded-s-none rounded-e-md h-full px-3 py-2 '
+        type="submit"
+        className="h-full rounded-e-md rounded-s-none bg-primary px-3 py-2 text-black "
       >
-        <SearchIcon className='w-6 h-6' />
+        <SearchIcon className="size-6" />
       </button>
     </form>
-  )
+  );
 }
